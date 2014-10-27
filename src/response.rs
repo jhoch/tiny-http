@@ -44,7 +44,7 @@ enum TransferEncoding {
 
 impl ::std::from_str::FromStr for TransferEncoding {
     fn from_str(input: &str) -> Option<TransferEncoding> {
-        use std::ascii::StrAsciiExt;
+        use std::ascii::AsciiExt;
 
         if input.eq_ignore_ascii_case("identity") {
             return Some(Identity);

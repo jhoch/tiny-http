@@ -1,4 +1,4 @@
-use std::ascii::{Ascii, AsciiCast, StrAsciiExt};
+use std::ascii::{Ascii, AsciiCast, AsciiExt};
 use std::fmt::{Formatter, FormatError, Show};
 
 /// Status code of a request or response.

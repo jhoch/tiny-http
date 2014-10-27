@@ -101,17 +101,17 @@ use std::io::net::ip;
 use std::io::net::tcp;
 use std::comm::Select;
 use std::sync::{Arc, Mutex};
-use std::sync::atomics::AtomicBool;
+use std::sync::atomic::AtomicBool;
 use client::ClientConnection;
 
 pub use common::{Header, HeaderField, HTTPVersion, Method, StatusCode};
 pub use request::Request;
 pub use response::Response;
 
-mod client;
-mod common;
-mod request;
-mod response;
+pub mod client;
+pub mod common;
+pub mod request;
+pub mod response;
 
 #[allow(dead_code)]     // TODO: remove when everything is implemented
 mod util;
@@ -387,7 +387,7 @@ impl<'a> Iterator<Request> for IncomingRequests<'a> {
 
 impl Drop for Server {
     fn drop(&mut self) {
-        use std::sync::atomics::Relaxed;
+        use std::sync::atomic::Relaxed;
         self.close.store(true, Relaxed);
     }
 }

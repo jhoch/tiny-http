@@ -1,7 +1,7 @@
 use std::io::IoResult;
 use std::io::net::tcp::TcpStream;
 use std::io::net::ip::SocketAddr;
-use std::sync::atomics::AtomicBool;
+use std::sync::atomic::AtomicBool;
 use std::sync::Arc;
 
 pub struct ClosableTcpStream {
@@ -48,7 +48,7 @@ impl Reader for ClosableTcpStream {
     fn read(&mut self, buf: &mut [u8]) -> IoResult<uint> {
         use std::io;
         use time;
-        //use std::sync::atomics::Relaxed;
+        //use std::sync::atomic::Relaxed;
 
         // getting the time when to stop the loop
         // 10 seconds timeout
@@ -80,7 +80,7 @@ impl Reader for ClosableTcpStream {
 impl Writer for ClosableTcpStream {
     fn write(&mut self, buf: &[u8]) -> IoResult<()> {
         use std::io;
-        //use std::sync::atomics::Relaxed;
+        //use std::sync::atomic::Relaxed;
 
         loop {
             // TODO: this makes some tests fail
